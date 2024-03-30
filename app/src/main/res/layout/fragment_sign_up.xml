@@ -76,7 +76,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnSignUp"
             android:layout_width="120dp"
             style="@style/ButtonsStyle"
             android:layout_height="50dp"
