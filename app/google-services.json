@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "771862925318",
+    "project_id": "tetrateam-89270",
+    "storage_bucket": "tetrateam-89270.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771862925318:android:a02d11628c4917efdd7387",
+        "android_client_info": {
+          "package_name": "com.example.tetrateam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnBKxJ9isIYBVbAwK2mc6t3kN4aEKAMNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
