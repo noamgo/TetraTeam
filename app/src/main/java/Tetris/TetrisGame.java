@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,11 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tetrateam.R;
+
 public class TetrisGame extends AppCompatActivity {
 
     int[][] board;
     GridLayout gridLayout;
-    Button btnRotate;
+    ImageButton btnRotate;
     TextView tvScore, tvLevel;
 
     boolean isGameOver = false;
@@ -46,7 +49,7 @@ public class TetrisGame extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about_me_screen);
+        setContentView(R.layout.tetris_game_screen);
 
         board = new int[numRows][numCols];
 

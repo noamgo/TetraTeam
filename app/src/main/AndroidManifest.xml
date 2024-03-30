@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TetraTeam"
         tools:targetApi="31">
         <activity
+            android:name=".AboutMe"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,6 +23,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="Tetris.TetrisGame"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainFragmentHub"
+            android:exported="false">
         </activity>
     </application>
 

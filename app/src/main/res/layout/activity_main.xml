@@ -9,17 +9,54 @@
 
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
 
         <ImageView
+            android:layout_margin="20dp"
             android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/app_logo" />
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/app_logo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignInUp"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            style="@style/ButtonsStyle"
+            android:text="Sign in/Sign up"
+            android:textSize="38sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRules"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            style="@style/ButtonsStyle"
+            android:text="Rules"
+            android:textSize="38sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAbout"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            style="@style/ButtonsStyle"
+            android:text="About"
+            android:textSize="38sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
