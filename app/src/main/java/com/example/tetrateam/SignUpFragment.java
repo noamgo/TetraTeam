@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class SignUpFragment extends Fragment {
     Intent intent;
     EditText etUsername, etEmail, etPassword, etPhone;
     Button btnSignUp;
+    User user;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -52,42 +54,44 @@ public class SignUpFragment extends Fragment {
                 password = String.valueOf(etPassword.getText());
                 phone = String.valueOf(etPhone.getText());
 
-                // Validation checks for all fields
-                if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(getContext(), "Enter username", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getContext(), "Enter email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getContext(), "Enter password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(getContext(), "Enter phone number", Toast.LENGTH_SHORT).show();
+                if (!checkFields()) {
                     return;
                 }
 
-                // Register user with all fields
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getContext(), "Registration successful", Toast.LENGTH_SHORT).show();
-                                    // Navigate to main fragment after successful registration
-                                    intent = new Intent(getContext(), MainFragmentHub.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(getContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                });
+                user = new User(username, email, phone);
+                user.writeNewUser(firebaseAuth.getUid(), username, email, phone);
+
+                Toast.makeText(getContext(), "Authentication success", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
     }
+
+    private boolean checkFields() {
+        if (etUsername.length() == 0) {
+            Toast.makeText(requireContext(), "Please enter name", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (etPassword.length() < 6) {
+            Toast.makeText(requireContext(), "Password too short", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (etEmail.length() == 0 || !Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()) {
+            Toast.makeText(requireContext(), "Email doesn't match expected format (example@ex.com)" , Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (etPhone.length() != 10 || !etPhone.getText().toString().matches("[0-9]+")) {
+            Toast.makeText(requireContext(), "phone number must be 10 digits", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
 }

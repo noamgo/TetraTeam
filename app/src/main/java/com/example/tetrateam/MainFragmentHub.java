@@ -9,13 +9,16 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class MainFragmentHub extends AppCompatActivity {
+public class MainFragmentHub extends BaseMenuActivity {
 
     ViewPager2 viewPager;
     MyViewPagerAdapter myAdapter;
     Intent intent;
     TabLayout tabLayout;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,7 @@ public class MainFragmentHub extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
 
+        mAuth = FirebaseAuth.getInstance();
 
         viewPager = findViewById(R.id.viewPager2);
         myAdapter = new MyViewPagerAdapter(
@@ -48,6 +52,16 @@ public class MainFragmentHub extends AppCompatActivity {
                     }
                 }
         ).attach();
+    }
+
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            intent = new Intent(MainFragmentHub.this, GameMenuActivity.class);
+            startActivity(intent);
+        }
     }
 }
 

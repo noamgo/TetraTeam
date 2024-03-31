@@ -85,6 +85,18 @@
             android:textColor="@color/white"
             android:textSize="20sp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_margin="40dp"
+            android:gravity="center"
+            android:text="Slide right to sign up"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
 
     </LinearLayout>
 
