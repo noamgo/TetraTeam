@@ -35,7 +35,7 @@
             android:textSize="38sp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnRules"
+            android:id="@+id/btn2players"
             android:layout_width="210dp"
             android:layout_height="70dp"
             android:layout_marginHorizontal="50dp"
