@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -65,11 +68,12 @@ public class SignUpFragment extends Fragment {
                             Toast.makeText(getContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
                             return;
                         } else {
-
                             user = new User(username, email, phone);
                             user.writeNewUser(firebaseAuth.getCurrentUser().getUid(),username, email, phone);
 
                             Toast.makeText(getContext(), "Authentication success", Toast.LENGTH_SHORT).show();
+
+                            goToSignIn(view);
                         }
                     }
                 });
@@ -77,6 +81,13 @@ public class SignUpFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void goToSignIn(View view) {
+        MainFragmentHub activity = (MainFragmentHub) getActivity();
+        if (activity != null) {
+            activity.goToSignIn(view);
+        }
     }
 
     private boolean checkFields() {

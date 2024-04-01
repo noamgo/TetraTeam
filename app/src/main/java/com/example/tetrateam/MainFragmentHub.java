@@ -2,6 +2,7 @@ package com.example.tetrateam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +54,11 @@ public class MainFragmentHub extends BaseMenuActivity {
                 }
         ).attach();
     }
+
+    public void goToSignIn(View view) {
+        viewPager.setCurrentItem(1, true);
+    }
+
 
     public void onStart() {
         super.onStart();

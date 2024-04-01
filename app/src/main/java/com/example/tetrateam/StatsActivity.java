@@ -13,6 +13,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,20 +59,36 @@ public class StatsActivity extends BaseMenuActivity {
                                 "Top 3 players: " + "\n");
 
                         FirebaseManager.getTop3Users().addOnCompleteListener(task2 -> {
-                            if (task2.isSuccessful()) {
-                                HashMap<String, HashMap<String, Object>> top3UsersMap = (HashMap<String, HashMap<String, Object>>) task2.getResult().getValue();
-                                if (top3UsersMap != null) {
-                                    for (String userId : top3UsersMap.keySet()) {
-                                        HashMap<String, Object> userData = top3UsersMap.get(userId);
-                                        // Assuming each user node contains "username" and "highScore" fields
-                                        String username = (String) userData.get("username");
-                                        long highScore = (long) userData.get("highScore");
-                                        // Now you have the user data, you can use it as needed
-                                        tvStats.append(username + " high score: " + highScore + "\n");
+                            if(task2.isSuccessful()) {
+                                ArrayList<User> top3Users = new ArrayList<>();
+                                DataSnapshot dataSnapshot = task2.getResult();
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    User user = userSnapshot.getValue(User.class);
+                                    top3Users.add(user);
+                                }
+
+                                // Sort the list of top 3 users by high score in ascending order
+                                Collections.sort(top3Users, new Comparator<User>() {
+                                    @Override
+                                    public int compare(User user1, User user2) {
+                                        // Compare by high score
+                                        return Long.compare(user1.getHighScore(), user2.getHighScore());
                                     }
+                                });
+
+                                // Display the top 3 users in ascending order
+                                int place = 1;
+                                for (int i = top3Users.size() - 1; i >= 0; i--) {
+                                    User user = top3Users.get(i);
+                                    String username = user.getUsername();
+                                    long highScore = user.getHighScore();
+                                    tvStats.append("Place: " + place + "\n" +
+                                            "Username: " + username + "\n" +
+                                            "High Score: " + highScore + "\n\n");
+                                    place++;
                                 }
                             } else {
-                                tvStats.append("Error: " + task2.getException().getMessage());
+                                // Handle error
                             }
                         });
                     }

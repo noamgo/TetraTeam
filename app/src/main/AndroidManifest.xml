@@ -19,9 +19,6 @@
             android:name=".StatsActivity"
             android:exported="false" />
         <activity
-            android:name=".GameMenu"
-            android:exported="false" />
-        <activity
             android:name=".GameMenuActivity"
             android:exported="false" />
         <activity

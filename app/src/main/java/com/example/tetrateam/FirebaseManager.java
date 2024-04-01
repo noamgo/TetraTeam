@@ -32,7 +32,7 @@ public class FirebaseManager {
         return FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).get();
     }
 
-    // function that returns a string of the 10 users with the highest score in the database
+    // function that returns a string of the 3 users with the highest score in the database
     public static Task<DataSnapshot> getTop3Users() {
         return FirebaseDatabase.getInstance().getReference().child("users").orderByChild("highScore").limitToLast(3).get();
     }
@@ -43,6 +43,21 @@ public class FirebaseManager {
 
     public static Task<Void> sendPasswordReset(String email) {
         return FirebaseAuth.getInstance().sendPasswordResetEmail(email);
+    }
+
+    //update the high score in the database if newScore is higher than the current high score
+    public static void updateHighScore(int newScore) {
+        // get the current high score from the database
+        Task<DataSnapshot> currentHighScoreTask = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).child("highScore").get();
+        currentHighScoreTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                int currentHighScore = task.getResult().getValue(Integer.class);
+                if (newScore > currentHighScore) {
+                    // update the high score in the database
+                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).child("highScore").setValue(newScore);
+                }
+            }
+        });
     }
 }
 

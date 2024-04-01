@@ -93,9 +93,8 @@
             android:gravity="center"
             android:text="Slide right to sign up"
             android:textColor="@color/white"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textSize="30sp"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>

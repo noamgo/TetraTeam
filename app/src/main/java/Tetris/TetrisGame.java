@@ -1,5 +1,6 @@
 package Tetris;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -15,9 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tetrateam.BaseMenuActivity;
+import com.example.tetrateam.FirebaseManager;
+import com.example.tetrateam.GameMenuActivity;
 import com.example.tetrateam.R;
 
-public class TetrisGame extends AppCompatActivity {
+public class TetrisGame extends BaseMenuActivity {
 
     int[][] board;
     GridLayout gridLayout;
@@ -441,6 +445,7 @@ public class TetrisGame extends AppCompatActivity {
         Toast.makeText(TetrisGame.this, "Game Over", Toast.LENGTH_SHORT).show();
         showWinnerPopup();
         isGameOver = true;
+        FirebaseManager.updateHighScore(score);
     }
 
     // Method to show the pop-up screen
@@ -449,7 +454,7 @@ public class TetrisGame extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // Inflate the winner_popup.xml layout
-        View popupView = getLayoutInflater().inflate(R.layout.end_game_popup, null);
+        View popupView = getLayoutInflater().inflate(R.layout.activity_end_game_pop_up, null);
 
         // Set the custom layout to the AlertDialog.Builder
         builder.setView(popupView);
@@ -458,11 +463,15 @@ public class TetrisGame extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         // Find views from the layout
-        TextView winnerTextView = popupView.findViewById(R.id.tvGameEnded);
-        Button closeButton = popupView.findViewById(R.id.closeButton);
+        TextView endGameTextView = popupView.findViewById(R.id.tvGameEnded);
+        Button restartButton = popupView.findViewById(R.id.restartButton);
+        Button menuButton = popupView.findViewById(R.id.menuButton);
+
+        // Set the text of the TextView
+        endGameTextView.setText("Game ended!!! \n" + "Your score is: \n" + score);
 
         // Set a click listener for the close button
-        closeButton.setOnClickListener(new View.OnClickListener() {
+        restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Dismiss the dialog when the close button is clicked
@@ -471,6 +480,15 @@ public class TetrisGame extends AppCompatActivity {
             }
         });
 
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Dismiss the dialog when the close button is clicked
+                dialog.dismiss();
+                Intent intent = new Intent(TetrisGame.this, GameMenuActivity.class);
+                startActivity(intent);
+            }
+        });
         // Show the dialog
         dialog.show();
     }
