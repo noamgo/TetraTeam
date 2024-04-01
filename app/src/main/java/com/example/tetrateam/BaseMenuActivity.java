@@ -35,6 +35,17 @@ public class BaseMenuActivity extends AppCompatActivity {
         return true;
     }
 
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Hide the "About Me" option if the user is in the "About Me" activity
+        MenuItem aboutMenuItem = menu.findItem(R.id.about);
+        aboutMenuItem.setVisible(!getClass().getSimpleName().equals("AboutMe"));
+
+        MenuItem menuItem = menu.findItem(R.id.Menu);
+        menuItem.setVisible(!getClass().getSimpleName().equals("GameMenuActivity"));
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

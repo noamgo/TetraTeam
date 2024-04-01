@@ -23,7 +23,13 @@ public class GameMenuActivity extends BaseMenuActivity {
         setContentView(R.layout.activity_game_menu);
 
         tvWelcome = findViewById(R.id.tvWelcome);
-        tvWelcome.setText("Welcome " + FirebaseManager.getUserUsername() + "!");
+        FirebaseManager.getUserUsername()
+                        .addOnCompleteListener(task -> {
+                           if(task.isSuccessful()) {
+                               String username = task.getResult().getValue(String.class);
+                               tvWelcome.setText("Welcome " + username + "!");
+                           }
+                        });
 
         btn1Player = findViewById(R.id.btn1player);
         btn1Player.setOnClickListener(new View.OnClickListener() {

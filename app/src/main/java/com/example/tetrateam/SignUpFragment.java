@@ -64,13 +64,15 @@ public class SignUpFragment extends Fragment {
                         if (!task.isSuccessful()) {
                             Toast.makeText(getContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
                             return;
+                        } else {
+
+                            user = new User(username, email, phone);
+                            user.writeNewUser(firebaseAuth.getCurrentUser().getUid(),username, email, phone);
+
+                            Toast.makeText(getContext(), "Authentication success", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-                user = new User(username, email, phone);
-                user.writeNewUser(firebaseAuth.getUid(), username, email, phone);
-
-                Toast.makeText(getContext(), "Authentication success", Toast.LENGTH_SHORT).show();
             }
         });
 

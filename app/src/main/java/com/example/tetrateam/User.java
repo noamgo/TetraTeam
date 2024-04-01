@@ -29,24 +29,36 @@ public class User {
         mDatabase.child("users").child(userId).setValue(user);
     }
 
-    public void setUsernameValue(String userId, String username) {
-        mDatabase.child("users").child(userId).child("username").setValue(username);
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmailValue(String userId, String email) {
-        mDatabase.child("users").child(userId).child("email").setValue(email);
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setPhoneValue(String userId, String phone) {
-        mDatabase.child("users").child(userId).child("phone").setValue(phone);
+    public String getEmail() {
+        return email;
     }
 
-    public void setHighScoreValue(String userId, int highScore) {
-        mDatabase.child("users").child(userId).child("highScore").setValue(highScore);
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUsernameValue(String userId) {
-        return mDatabase.child("users").child(userId).child("username").toString();
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
     }
 
     public void deleteUser() {
