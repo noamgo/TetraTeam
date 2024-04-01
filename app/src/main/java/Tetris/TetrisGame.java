@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tetrateam.BaseMenuActivity;
 import com.example.tetrateam.FirebaseManager;
 import com.example.tetrateam.GameMenuActivity;
+import com.example.tetrateam.MusicService;
 import com.example.tetrateam.R;
 
 import java.util.Locale;
@@ -125,6 +126,7 @@ public class TetrisGame extends BaseMenuActivity {
         createShape(numRows, numCols);
         startAutoMoveDown();
         isGameOver = false;
+        startMusic();
     }
 
     private void initializeGameBoard() {
@@ -456,6 +458,7 @@ public class TetrisGame extends BaseMenuActivity {
     public void gameOver() {
         Toast.makeText(TetrisGame.this, "Game Over", Toast.LENGTH_SHORT).show();
         showWinnerPopup();
+        stopMusic();
         isGameOver = true;
         FirebaseManager.updateHighScore(score);
     }
@@ -506,6 +509,16 @@ public class TetrisGame extends BaseMenuActivity {
         });
         // Show the dialog
         dialog.show();
+    }
+
+    private void startMusic() {
+        Intent musicIntent = new Intent(this, MusicService.class);
+        startService(musicIntent);
+    }
+
+    private void stopMusic() {
+        Intent musicIntent = new Intent(this, MusicService.class);
+        stopService(musicIntent);
     }
 
     @Override
