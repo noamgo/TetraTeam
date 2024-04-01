@@ -3,6 +3,7 @@ package Tetris;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.example.tetrateam.BaseMenuActivity;
 import com.example.tetrateam.FirebaseManager;
 import com.example.tetrateam.GameMenuActivity;
 import com.example.tetrateam.R;
+
+import java.util.Locale;
 
 public class TetrisGame extends BaseMenuActivity {
 
@@ -48,7 +51,7 @@ public class TetrisGame extends BaseMenuActivity {
 
     private final Handler handler = new Handler();
     private int DELAY_MS;
-
+    private TextToSpeech tsp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,6 +103,15 @@ public class TetrisGame extends BaseMenuActivity {
                 };
                 // Start smooth downward movement
                 handler.post(smoothMoveDown);
+            }
+        });
+
+        tsp = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if (i == TextToSpeech.SUCCESS) {
+                    int lang = tsp.setLanguage(Locale.ENGLISH);
+                }
             }
         });
     }
@@ -469,6 +481,9 @@ public class TetrisGame extends BaseMenuActivity {
 
         // Set the text of the TextView
         endGameTextView.setText("Game ended!!! \n" + "Your score is: \n" + score);
+
+        // Set the text of the TextToSpeech
+        tsp.speak("Game ended!!! Your score is: " + score, TextToSpeech.QUEUE_FLUSH, null, "");
 
         // Set a click listener for the close button
         restartButton.setOnClickListener(new View.OnClickListener() {
