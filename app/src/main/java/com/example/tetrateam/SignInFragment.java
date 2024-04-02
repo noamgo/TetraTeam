@@ -16,13 +16,16 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-
+// Sign In Fragment
 public class SignInFragment extends Fragment {
 
-    FirebaseAuth mAuth;
+    // variables
     Button btnSignIn;
     EditText etEmail, etPassword;
     TextView tvForgotPassword;
+
+    // Firebase Authentication
+    FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +36,8 @@ public class SignInFragment extends Fragment {
         etPassword = view.findViewById(R.id.etPassword);
 
         mAuth = FirebaseAuth.getInstance();
+
+        // button to sign in the user is the data is valid
         btnSignIn = view.findViewById(R.id.btnSignIn);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +47,7 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        // button to send a password reset to the user email if the email is valid
         tvForgotPassword = view.findViewById(R.id.tvForgotPassword);
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +59,7 @@ public class SignInFragment extends Fragment {
         return view;
     }
 
+    // function to send a password reset
     private void sendPasswordReset() {
         FirebaseManager.sendPasswordReset(etEmail.getText().toString())
                 .addOnCompleteListener(task -> {
@@ -61,7 +68,7 @@ public class SignInFragment extends Fragment {
                 });
     }
 
-
+    // function to sign in
     private void signIn() {
         FirebaseManager.signIn(etEmail.getText().toString(), etPassword.getText().toString())
                 .addOnCompleteListener(task -> {
@@ -73,6 +80,7 @@ public class SignInFragment extends Fragment {
                 });
     }
 
+    // function that returns true if the data is valid else false
     private boolean isValidSignInData() {
         String password = etEmail.getText().toString();
         if (!isValidEmail())
@@ -84,6 +92,7 @@ public class SignInFragment extends Fragment {
         return true;
     }
 
+    // function that returns true if the email is valid else false
     private boolean isValidEmail() {
         String emailAddress = etEmail.getText().toString();
         if (emailAddress.isEmpty()) {
@@ -98,7 +107,7 @@ public class SignInFragment extends Fragment {
         return true;
     }
 
-
+    // function to show a short toast (to make it easier to write Toast code)
     private void showShortToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }

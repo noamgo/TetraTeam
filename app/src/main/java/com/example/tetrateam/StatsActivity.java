@@ -1,30 +1,25 @@
 package com.example.tetrateam;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.GenericTypeIndicator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 
+// Stats Activity that shows the stats of the user and the high score of top players (extends BaseMenuActivity to easily use the menu without using all of the menu functions again)
 public class StatsActivity extends BaseMenuActivity {
 
+    // variables
     Button btnBack;
     Intent intent;
     TextView tvStats;
     User currentUser;
-    int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +37,13 @@ public class StatsActivity extends BaseMenuActivity {
 
         tvStats = findViewById(R.id.tvStats);
 
+        // get the stats of the user
         FirebaseManager.getAllUserData()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         currentUser = task.getResult().getValue(User.class);
 
+                        // print the stats of the current user
                         tvStats.setText("User information: \n" +
                                 "username: " + "\n" + currentUser.getUsername() + "\n" +
                                 "\n" +
@@ -58,6 +55,7 @@ public class StatsActivity extends BaseMenuActivity {
                                 "\n" + "\n" +
                                 "Top 3 players: " + "\n");
 
+                        // get the top 3 users from the database
                         FirebaseManager.getTop3Users().addOnCompleteListener(task2 -> {
                             if (task2.isSuccessful()) {
                                 ArrayList<User> top3Users = new ArrayList<>();
@@ -87,8 +85,6 @@ public class StatsActivity extends BaseMenuActivity {
                                             "High Score: " + highScore + "\n\n");
                                     place++;
                                 }
-                            } else {
-                                // Handle error
                             }
                         });
                     }

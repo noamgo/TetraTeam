@@ -8,33 +8,33 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+// About Me Activity (extends BaseMenuActivity to easily use the menu without using all of the menu functions again)
 public class AboutMe extends BaseMenuActivity {
 
+    // variables
+    TextView tvAbout;
+    Button btnBack;
     Intent intent;
+
+    // Objects for reading the file
     InputStream is;
     InputStreamReader isr;
     BufferedReader br;
-    TextView tvAbout;
-    Button btnBack;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
-        mAuth = FirebaseAuth.getInstance();
-
         tvAbout = findViewById(R.id.tvAbout);
         buildText();
 
+        // Back button to go back to the menu (if signed in) or to the Game Menu (if not signed in)
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -48,6 +48,7 @@ public class AboutMe extends BaseMenuActivity {
         });
     }
 
+    // Build the About Me text from the text file in the raw folder
     private void buildText() {
         is = getResources().openRawResource(R.raw.about_me);
         isr = new InputStreamReader(is);

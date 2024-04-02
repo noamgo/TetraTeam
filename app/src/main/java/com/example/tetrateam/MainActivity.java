@@ -8,21 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
-
+// Main menu (extends AppCompatActivity to easily use the menu without using all of the menu functions again)
 public class MainActivity extends AppCompatActivity {
 
+    // variables
     Button btnPlay, btnAbout, btnRules;
     Intent intent;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-
+        // button that moves the user to the SignIn/Up Fragments (if not signed in) or the Game Menu (if signed in)
         btnPlay = findViewById(R.id.btnPlay);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // button that moves the user to the About Me Activity
         btnAbout = findViewById(R.id.btnAbout);
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // button that opens the rules google docs
         btnRules = findViewById(R.id.btnRules);
         btnRules.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // function that opens the rules google docs
     public void openUrl(View view) {
         // Replace the URL with your desired URL
         String url = "https://docs.google.com/document/d/1Cc8r7-TKiNB5eVwPfK9A97U3VVGC874jQe7UAKzIRqw/edit?usp=sharing";

@@ -20,6 +20,6 @@
     <item
         android:id="@+id/toggleMusic"
         android:icon="@drawable/mute"
-        android:title="Mute"
+        android:title="Toggle music"
         app:showAsAction="always" />
 </menu>

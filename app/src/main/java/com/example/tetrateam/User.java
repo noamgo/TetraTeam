@@ -2,20 +2,20 @@ package com.example.tetrateam;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 
-@IgnoreExtraProperties
+// User class that contains the information of the user
 public class User {
 
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    // variables
     public String username;
     public String email;
     public String phone;
     public int highScore;
 
-    public User() {
-    }
+    // Firebase Database instance
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
+    // constructor with parameters
     public User(String username, String email, String phone) {
         this.username = username;
         this.email = email;
@@ -23,12 +23,14 @@ public class User {
         highScore = 0;
     }
 
+    // write the user to the database
     public void writeNewUser(String userId, String name, String email, String phone) {
         User user = new User(name, email, phone);
 
         mDatabase.child("users").child(userId).setValue(user);
     }
 
+    // getters and setters
     public String getUsername() {
         return username;
     }
@@ -59,11 +61,5 @@ public class User {
 
     public void setHighScore(int highScore) {
         this.highScore = highScore;
-    }
-
-    public void deleteUser() {
-        if (mDatabase != null) {
-            mDatabase.child("users").removeValue();
-        }
     }
 }

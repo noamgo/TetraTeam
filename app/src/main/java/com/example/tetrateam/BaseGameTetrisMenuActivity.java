@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 
+// Base class for menu in the Tetris game (to use toggle music feature easily only in the tetris game activity)
 public class BaseGameTetrisMenuActivity extends AppCompatActivity {
 
+    // variables
     Intent intent;
 
     @Override
@@ -34,18 +36,7 @@ public class BaseGameTetrisMenuActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // Hide the "About Me" option if the user is in the "About Me" activity
-        MenuItem aboutMenuItem = menu.findItem(R.id.about);
-        aboutMenuItem.setVisible(!getClass().getSimpleName().equals("AboutMe"));
-
-        MenuItem menuItem = menu.findItem(R.id.Menu);
-        menuItem.setVisible(!getClass().getSimpleName().equals("GameMenuActivity"));
-
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-
+    // define all the menu items in the menu
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -68,8 +59,9 @@ public class BaseGameTetrisMenuActivity extends AppCompatActivity {
             return true;
         }
 
+        // Sign out menu item asks the user if they want to sign out before signing out
         if (id == R.id.signOut) {
-            new AlertDialog.Builder(this).setTitle("Exit").
+            new AlertDialog.Builder(this).setTitle("Sign out").
                     setMessage("Are you sure you want to sign out?").
                     setNeutralButton("No", new DialogInterface.OnClickListener() {
                         @Override

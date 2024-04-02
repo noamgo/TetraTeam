@@ -1,11 +1,12 @@
 package com.example.tetrateam;
 
+//Class that define the Tetris shapes (colors and shapes) for the game
 public class TetrisShapes {
-    // store the location of current shape
+    // store the location of current shape (0 means empty)
     private static int[][] currentShape;
 
 
-    // Tetris shapes
+    // Tetris shape's as matrix
     public static final int[][] SHAPE_I = {
             {1, 1, 1, 1}
     };
@@ -41,7 +42,6 @@ public class TetrisShapes {
     };
 
     // function that return random shape
-    // function that return random shape
     public static int[][] getRandomShape() {
         int random = (int) (Math.random() * 6);
         if (random == 0) {
@@ -62,14 +62,14 @@ public class TetrisShapes {
         return currentShape;
     }
 
+    //function that return the current shape
     public static int[][] getCurrentShape() {
         return currentShape;
     }
 
+    // function that set the current shape
     public static void setCurrentShape(int[][] shape) {
         currentShape = shape;
     }
-
-
 }
 

@@ -7,29 +7,37 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+// On Swipe Touch Listener to detect swipes for the Tetris game
 public class OnSwipeTouchListener implements OnTouchListener {
 
+    // variables
     private final GestureDetector gestureDetector;
 
+    // constructor
     public OnSwipeTouchListener(Context ctx) {
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 
+    // on touch function to detect swipes
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
 
+    // gesture listener to detect swipes
     private final class GestureListener extends SimpleOnGestureListener {
 
+        // variables
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
+        // return true when a swipe down is detected
         @Override
         public boolean onDown(MotionEvent e) {
             return true;
         }
 
+        // detect which direction the user swiped
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             boolean result = false;
@@ -60,6 +68,7 @@ public class OnSwipeTouchListener implements OnTouchListener {
         }
     }
 
+    // on swipe functions
     public void onSwipeRight() {
     }
 
