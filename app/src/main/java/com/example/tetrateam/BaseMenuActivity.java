@@ -42,8 +42,11 @@ public class BaseMenuActivity extends AppCompatActivity {
         MenuItem aboutMenuItem = menu.findItem(R.id.about);
         aboutMenuItem.setVisible(!getClass().getSimpleName().equals("AboutMe"));
 
-        MenuItem menuItem = menu.findItem(R.id.Menu);
-        menuItem.setVisible(!getClass().getSimpleName().equals("GameMenuActivity"));
+        MenuItem menuMenuItem = menu.findItem(R.id.Menu);
+        menuMenuItem.setVisible(!getClass().getSimpleName().equals("GameMenuActivity"));
+
+        MenuItem signOutMenuItem = menu.findItem(R.id.signOut);
+        signOutMenuItem.setVisible(FirebaseManager.isSignedIn());
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -66,9 +69,12 @@ public class BaseMenuActivity extends AppCompatActivity {
         }
 
         if (id == R.id.Menu) {
-            intent = new Intent(this, GameMenuActivity.class);
+            if (FirebaseManager.isSignedIn())
+                intent = new Intent(this, GameMenuActivity.class);
+            else
+                intent = new Intent(this, MainActivity.class);
+
             startActivity(intent);
-            return true;
         }
 
         // Sign out menu item asks the user if they want to sign out before signing out

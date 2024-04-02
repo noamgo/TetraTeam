@@ -41,7 +41,7 @@ public class AboutMe extends BaseMenuActivity {
                 if (FirebaseManager.isSignedIn())
                     intent = new Intent(AboutMe.this, GameMenuActivity.class);
                 else
-                    intent = new Intent(AboutMe.this, MainFragmentHub.class);
+                    intent = new Intent(AboutMe.this, MainActivity.class);
 
                 startActivity(intent);
             }

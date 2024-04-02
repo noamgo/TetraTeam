@@ -15,6 +15,9 @@ public class User {
     // Firebase Database instance
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
+    // constructor without parameters
+    public User() {}
+
     // constructor with parameters
     public User(String username, String email, String phone) {
         this.username = username;
