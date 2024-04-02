@@ -7,7 +7,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-public class MusicService extends Service{
+public class MusicService extends Service {
     private static MediaPlayer mediaPlayer;
 
     public MusicService() {
@@ -28,8 +28,8 @@ public class MusicService extends Service{
     @Override
     public void onDestroy() {
         super.onDestroy();
-            mediaPlayer.stop();
-            mediaPlayer.release();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
     @Nullable

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameMenuActivity"
-    android:background="@drawable/tetrateam_background">
+    android:background="@drawable/tetrateam_background"
+    tools:context=".GameMenuActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,44 +15,44 @@
         tools:layout_editor_absoluteY="1dp">
 
         <ImageView
-            android:layout_margin="20dp"
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
+            android:layout_margin="20dp"
             android:src="@drawable/app_logo" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/startGame"
+            style="@style/ButtonsStyle"
             android:layout_width="210dp"
             android:layout_height="70dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"
             android:padding="15dp"
-            style="@style/ButtonsStyle"
             android:text="Start"
-            android:textSize="38sp"/>
+            android:textSize="38sp" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStats"
+            style="@style/ButtonsStyle"
             android:layout_width="210dp"
             android:layout_height="70dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"
             android:padding="15dp"
-            style="@style/ButtonsStyle"
             android:text="STATS"
-            android:textSize="38sp"/>
+            android:textSize="38sp" />
 
         <TextView
-            android:layout_margin="20dp"
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
-            android:textSize="40dp"
+            android:layout_height="200dp"
+            android:layout_margin="20dp"
             android:textColor="@color/white"
-            android:layout_height="200dp"/>
+            android:textSize="40dp" />
 
 
     </LinearLayout>

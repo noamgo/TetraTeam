@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import Tetris.TetrisGame;
-
 public class GameMenuActivity extends BaseMenuActivity {
 
     TextView tvWelcome;
@@ -22,12 +20,12 @@ public class GameMenuActivity extends BaseMenuActivity {
 
         tvWelcome = findViewById(R.id.tvWelcome);
         FirebaseManager.getUserUsername()
-                        .addOnCompleteListener(task -> {
-                           if(task.isSuccessful()) {
-                               String username = task.getResult().getValue(String.class);
-                               tvWelcome.setText("Welcome " + username + "!");
-                           }
-                        });
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String username = task.getResult().getValue(String.class);
+                        tvWelcome.setText("Welcome " + username + "!");
+                    }
+                });
 
         btn1Player = findViewById(R.id.startGame);
         btn1Player.setOnClickListener(new View.OnClickListener() {

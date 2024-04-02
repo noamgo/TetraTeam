@@ -87,7 +87,7 @@ public class BaseGameTetrisMenuActivity extends AppCompatActivity {
                     }).show();
             return true;
         }
-        
+
         return super.onOptionsItemSelected(item);
     }
 }

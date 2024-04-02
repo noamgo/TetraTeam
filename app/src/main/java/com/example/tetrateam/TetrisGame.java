@@ -1,4 +1,4 @@
-package Tetris;
+package com.example.tetrateam;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,16 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.tetrateam.BaseGameTetrisMenuActivity;
-import com.example.tetrateam.BaseMenuActivity;
-import com.example.tetrateam.FirebaseManager;
-import com.example.tetrateam.GameMenuActivity;
-import com.example.tetrateam.MusicService;
-import com.example.tetrateam.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
@@ -170,8 +160,7 @@ public class TetrisGame extends BaseGameTetrisMenuActivity {
 
         if (!isPlaceAvailable(selectedShape, initialRow, initialCol)) {
             gameOver();
-        }
-        else
+        } else
             putShapeOnBoard(selectedShape, initialRow, initialCol);
     }
 

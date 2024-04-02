@@ -69,7 +69,7 @@ public class SignUpFragment extends Fragment {
                             return;
                         } else {
                             user = new User(username, email, phone);
-                            user.writeNewUser(firebaseAuth.getCurrentUser().getUid(),username, email, phone);
+                            user.writeNewUser(firebaseAuth.getCurrentUser().getUid(), username, email, phone);
 
                             Toast.makeText(getContext(), "Authentication success", Toast.LENGTH_SHORT).show();
 
@@ -98,7 +98,7 @@ public class SignUpFragment extends Fragment {
             Toast.makeText(requireContext(), "Password too short", Toast.LENGTH_SHORT).show();
             return false;
         } else if (etEmail.length() == 0 || !Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()) {
-            Toast.makeText(requireContext(), "Email doesn't match expected format (example@ex.com)" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Email doesn't match expected format (example@ex.com)", Toast.LENGTH_SHORT).show();
             return false;
         } else if (etPhone.length() != 10 || !etPhone.getText().toString().matches("[0-9]+")) {
             Toast.makeText(requireContext(), "phone number must be 10 digits", Toast.LENGTH_SHORT).show();

@@ -88,7 +88,7 @@ public class BaseMenuActivity extends AppCompatActivity {
                     }).show();
             return true;
         }
-        
+
         return super.onOptionsItemSelected(item);
     }
 }

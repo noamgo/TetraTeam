@@ -59,7 +59,7 @@ public class StatsActivity extends BaseMenuActivity {
                                 "Top 3 players: " + "\n");
 
                         FirebaseManager.getTop3Users().addOnCompleteListener(task2 -> {
-                            if(task2.isSuccessful()) {
+                            if (task2.isSuccessful()) {
                                 ArrayList<User> top3Users = new ArrayList<>();
                                 DataSnapshot dataSnapshot = task2.getResult();
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {

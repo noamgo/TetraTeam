@@ -2,38 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@drawable/tetrateam_background"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvGameEnded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:textColor="@android:color/white"
-        android:gravity="center"
         android:layout_marginBottom="16dp"
-        android:textStyle="bold"/>
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/restartButton"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
+        style="@style/ButtonsStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:text="Restart"
-        style="@style/ButtonsStyle"
-        android:textSize="40sp"/>
+        android:textSize="40sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/menuButton"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
+        style="@style/ButtonsStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:text="Menu"
-        style="@style/ButtonsStyle"
-        android:textSize="40sp"/>
+        android:textSize="40sp" />
 </LinearLayout>

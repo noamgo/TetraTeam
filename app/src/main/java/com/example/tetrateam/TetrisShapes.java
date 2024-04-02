@@ -1,4 +1,4 @@
-package Tetris;
+package com.example.tetrateam;
 
 public class TetrisShapes {
     // store the location of current shape

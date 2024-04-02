@@ -7,12 +7,11 @@
     android:background="@drawable/tetrateam_background">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
@@ -1084,15 +1083,14 @@
 
             <ImageButton
                 android:id="@+id/btnRotate"
-                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/rotate_button_visual"
                 android:background="@android:color/transparent"
-                />
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rotate_button_visual" />
 
         </LinearLayout>
     </LinearLayout>

@@ -20,6 +20,7 @@ public class MainFragmentHub extends BaseMenuActivity {
     Intent intent;
     TabLayout tabLayout;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class MainFragmentHub extends BaseMenuActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             intent = new Intent(MainFragmentHub.this, GameMenuActivity.class);
             startActivity(intent);
         }

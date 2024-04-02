@@ -38,7 +38,7 @@ public class AboutMe extends BaseMenuActivity {
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(FirebaseManager.isSignedIn())
+                if (FirebaseManager.isSignedIn())
                     intent = new Intent(AboutMe.this, GameMenuActivity.class);
                 else
                     intent = new Intent(AboutMe.this, MainFragmentHub.class);
