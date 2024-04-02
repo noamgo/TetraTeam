@@ -1,7 +1,5 @@
 package com.example.tetrateam;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +29,7 @@ public class GameMenuActivity extends BaseMenuActivity {
                            }
                         });
 
-        btn1Player = findViewById(R.id.btn1player);
+        btn1Player = findViewById(R.id.startGame);
         btn1Player.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

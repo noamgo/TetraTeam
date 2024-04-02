@@ -8,7 +8,7 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 
 public class MusicService extends Service{
-    private MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer;
 
     public MusicService() {
     }

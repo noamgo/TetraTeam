@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -17,15 +18,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tetrateam.BaseGameTetrisMenuActivity;
 import com.example.tetrateam.BaseMenuActivity;
 import com.example.tetrateam.FirebaseManager;
 import com.example.tetrateam.GameMenuActivity;
 import com.example.tetrateam.MusicService;
 import com.example.tetrateam.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
-public class TetrisGame extends BaseMenuActivity {
+public class TetrisGame extends BaseGameTetrisMenuActivity {
 
     int[][] board;
     GridLayout gridLayout;
@@ -54,6 +58,8 @@ public class TetrisGame extends BaseMenuActivity {
     private int DELAY_MS;
     private TextToSpeech tsp;
 
+    boolean isMusicPlaying;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +70,8 @@ public class TetrisGame extends BaseMenuActivity {
         tvLevel = findViewById(R.id.tvLevel);
 
         tvScore = findViewById(R.id.tvScore);
+
+        isMusicPlaying = true;
 
         // start the game
         startGame();
@@ -525,11 +533,20 @@ public class TetrisGame extends BaseMenuActivity {
     protected void onResume() {
         super.onResume();
         startAutoMoveDown();
+        startMusic();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        stopAutoMoveDown();
+        stopMusic();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopMusic();
         stopAutoMoveDown();
     }
 
@@ -551,4 +568,36 @@ public class TetrisGame extends BaseMenuActivity {
             }
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle menu item clicks
+        int id = item.getItemId();
+
+        if (id == R.id.toggleMusic) {
+            toggleMusic(item); // Pass the MenuItem parameter
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void toggleMusic(MenuItem item) {
+        if (isMusicPlaying) {
+            stopMusic();
+            // Change the icon to unmute
+            item.setIcon(R.drawable.volume);
+        } else {
+            startMusic();
+            // Change the icon to mute
+            item.setIcon(R.drawable.mute);
+        }
+        isMusicPlaying = !isMusicPlaying;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopMusic();
+    }
 }

@@ -7,7 +7,6 @@
     tools:context=".GameMenuActivity"
     android:background="@drawable/tetrateam_background">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +22,7 @@
             android:src="@drawable/app_logo" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn1player"
+            android:id="@+id/startGame"
             android:layout_width="210dp"
             android:layout_height="70dp"
             android:layout_marginHorizontal="50dp"
@@ -31,20 +30,9 @@
             android:layout_gravity="center"
             android:padding="15dp"
             style="@style/ButtonsStyle"
-            android:text="1 PLAYER"
+            android:text="Start"
             android:textSize="38sp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn2players"
-            android:layout_width="210dp"
-            android:layout_height="70dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            style="@style/ButtonsStyle"
-            android:text="2 PLAYERS"
-            android:textSize="38sp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStats"
@@ -63,6 +51,7 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:textSize="40dp"
+            android:textColor="@color/white"
             android:layout_height="200dp"/>
 
 
