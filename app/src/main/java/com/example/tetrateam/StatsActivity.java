@@ -18,7 +18,7 @@ public class StatsActivity extends BaseMenuActivity {
     // variables
     Button btnBack;
     Intent intent;
-    TextView tvStats;
+    TextView tvStats, tvRank1, tvPlayer1, tvScore1, tvRank2, tvPlayer2, tvScore2, tvRank3, tvPlayer3, tvScore3;
     User currentUser;
 
     @Override
@@ -35,7 +35,19 @@ public class StatsActivity extends BaseMenuActivity {
             }
         });
 
+        ArrayList<User> top3Users = new ArrayList<>();
+
         tvStats = findViewById(R.id.tvStats);
+
+        tvRank1 = findViewById(R.id.tvRank1);
+        tvPlayer1 = findViewById(R.id.tvPlayer1);
+        tvScore1 = findViewById(R.id.tvScore1);
+        tvRank2 = findViewById(R.id.tvRank2);
+        tvPlayer2 = findViewById(R.id.tvPlayer2);
+        tvScore2 = findViewById(R.id.tvScore2);
+        tvRank3 = findViewById(R.id.tvRank3);
+        tvPlayer3 = findViewById(R.id.tvPlayer3);
+        tvScore3 = findViewById(R.id.tvScore3);
 
         // get the stats of the user
         FirebaseManager.getAllUserData()
@@ -58,34 +70,39 @@ public class StatsActivity extends BaseMenuActivity {
                         // get the top 3 users from the database
                         FirebaseManager.getTop3Users().addOnCompleteListener(task2 -> {
                             if (task2.isSuccessful()) {
-                                ArrayList<User> top3Users = new ArrayList<>();
                                 DataSnapshot dataSnapshot = task2.getResult();
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                     User user = userSnapshot.getValue(User.class);
                                     top3Users.add(user);
                                 }
 
-                                // Sort the list of top 3 users by high score in ascending order
+                                // Sort the list of top 3 users by high score in descending order
                                 Collections.sort(top3Users, new Comparator<User>() {
                                     @Override
                                     public int compare(User user1, User user2) {
                                         // Compare by high score
-                                        return Long.compare(user1.getHighScore(), user2.getHighScore());
+                                        return Long.compare(user2.getHighScore(), user1.getHighScore());
                                     }
                                 });
-
-                                // Display the top 3 users in ascending order
-                                int place = 1;
-                                for (int i = top3Users.size() - 1; i >= 0; i--) {
-                                    User user = top3Users.get(i);
-                                    String username = user.getUsername();
-                                    long highScore = user.getHighScore();
-                                    tvStats.append("Place: " + place + "\n" +
-                                            "Username: " + username + "\n" +
-                                            "High Score: " + highScore + "\n\n");
-                                    place++;
-                                }
                             }
+
+                            // Display the top 3 users in ascending order
+                            User user1 = top3Users.get(0);
+                            User user2 = top3Users.get(1);
+                            User user3 = top3Users.get(2);
+
+                            tvRank1.setText("1");
+                            tvPlayer1.setText(user1.getUsername());
+                            tvScore1.setText(Long.toString(user1.getHighScore()));
+
+                            tvRank2.setText("2");
+                            tvPlayer2.setText(user2.getUsername());
+                            tvScore2.setText(Long.toString(user2.getHighScore()));
+
+                            tvRank3.setText("3");
+                            tvPlayer3.setText(user3.getUsername());
+                            tvScore3.setText(Long.toString(user3.getHighScore()));
+
                         });
                     }
                 });

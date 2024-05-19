@@ -82,6 +82,8 @@ public class TetrisGame extends BaseGameTetrisMenuActivity {
 
         isMusicPlaying = true;
 
+        startMusic();
+
         // start the game
         startGame();
 
@@ -147,7 +149,6 @@ public class TetrisGame extends BaseGameTetrisMenuActivity {
         createShape(numRows, numCols);
         startAutoMoveDown();
         isGameOver = false;
-        startMusic();
     }
 
     // function that initializes the game board to all 0

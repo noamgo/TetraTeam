@@ -96,8 +96,8 @@ public class SignUpFragment extends Fragment {
 
     // check if fields are valid
     private boolean checkFields() {
-        if (etUsername.length() == 0 || etUsername.length() > 18) {
-            Toast.makeText(requireContext(), "Please enter name (less than 18 characters)", Toast.LENGTH_SHORT).show();
+        if (etUsername.length() == 0 || etUsername.length() > 10) {
+            Toast.makeText(requireContext(), "Please enter name (10 or less characters)", Toast.LENGTH_SHORT).show();
             return false;
         } else if (etPassword.length() < 6) {
             Toast.makeText(requireContext(), "Password too short", Toast.LENGTH_SHORT).show();
