@@ -54,7 +54,7 @@
                 android:id="@+id/btnSignIn"
                 android:layout_width="120dp"
                 style="@style/ButtonsStyle"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Sign In"
                 android:textColor="@color/white"
